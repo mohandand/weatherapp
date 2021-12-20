@@ -1,0 +1,99 @@
+body {
+    background-color: hsla(0,0%,87.8%,.10196078431372549);
+    padding: 0px;
+    margin: 0px;
+   }
+/* .app-container{
+    display:flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin: 0 auto
+} */
+
+.app-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    max-width: 600px;
+    margin: auto
+}
+
+.searchinput{
+    margin-top: 30px;
+    width: 80%;
+    margin-left: 23%;
+}
+.sinput{
+    height: 20px;
+    width: 50%;
+    padding: 8px 8px 8px 8px;
+    border-radius: 20px;
+    margin-right: 9px;
+}
+.searchbutton{
+    padding: 8px 8px 8px 8px;
+    border-radius: 20px;
+}
+.weekforecast{
+    width: 100%;
+    margin: 1rem 0
+}
+/* .alldays{
+    margin: 10px 30px 10px 30px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    JUSTIFY-CONTENT: space-between;
+    padding: 0px
+
+} */
+.alldays{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0;
+}
+
+
+.day{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: 4px 4px 9px #ccc, -4px -4px 9px #fff;
+    margin: 2px 2px 2px 2px;
+    /* padding: 6px 40px 23px 40px; */
+    padding:0.3rem;
+    border-radius: 10px;
+}
+.weatherIcon{
+    width:2rem;
+    height:2rem;
+}
+.icon{
+    width:100%;
+    height:100%;
+}
+
+.description{
+    display: flex;
+    justify-content: space-between
+}
+.itemdescrption{
+    width: 45%;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    background-color: rgba(202,212,239,.45098039215686275);
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0
+}
+.weatherattribute{
+    font-weight: 700
+}
