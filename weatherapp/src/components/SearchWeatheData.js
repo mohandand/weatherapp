@@ -101,7 +101,7 @@ const SearchWeatheData = (props) => {
     return(
         <div className="app-container">
             <div className="searchinput"> 
-                <input type="input" className="sinput" onChange={handleCity} placeholder="Search For a City"/>
+                <input type="input" className="sinput"  value={cityname} onChange={handleCity} placeholder="Search For a City"/>
                 <button className="searchbutton" onClick={getweather}>Search</button>
             </div>
             <div className="description">
