@@ -1,4 +1,4 @@
-import SearchCity from "./components/SearchCity";
+import SearchWeatheData from "./components/SearchWeatheData";
 
 function App() {
 
@@ -10,7 +10,7 @@ function App() {
         
           {/* {location.loaded ? JSON.stringify(location) : "Location not avilable"} */}
           {/* <SearchCity location={JSON.stringify(location.coordinates)}/> */}
-          <SearchCity />
+          <SearchWeatheData />
     
       </header>
     </div>

@@ -172,3 +172,24 @@ let weekdaysdata = weatherdata.map((item) => {
 </span>
 <span>{weatherdata[0].desc}</span>
 </li>
+
+ <div className="description">
+                <div className="itemdescrption">
+                    <span className="weatherattribute">Pressure</span>
+                    <span>Presur</span>
+                </div>
+                <div className="itemdescrption">
+                    <span className="weatherattribute">Pressure</span>
+                    <span>Presur</span>
+                </div>
+            </div>
+            <div className="description">
+                <div className="itemdescrption">
+                    <span className="weatherattribute">Pressure</span>
+                    <span>{weatherdata[0].desc}</span>
+                </div>
+                <div className="itemdescrption">
+                    <span className="weatherattribute">Pressure</span>
+                    <span>{weatherdata[0].desc}</span>
+                </div>
+            </div>
