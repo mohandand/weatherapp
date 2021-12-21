@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import Chart from "./LineChart";
+import WeatherGraph from "./WeatherGraph";
 import WeekDaysWeatherDataDisplay from './WeekDaysWeatherDataDisplay';
 import ExtraWeatherInfo from './ExtraWeatherInfo';
+import CityName from './CityName.js';
 import axios from "axios";
-
 
 const SearchWeatheData = (props) => {
 
@@ -12,18 +12,21 @@ const SearchWeatheData = (props) => {
     const [res,setRes] = useState(" ");
     const[weatherdata, setWeatherData] = useState([]);
 
+//Getting Current Location And calling Fetch Wetaherdata function.
     const savePositionToState = (position) => {
         const cityurl = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=${appkey}`
         console.log(cityurl);
-        fetchWeatherGC(cityurl);
-    }
+        fetchWeather(cityurl);
+ }
 
+//Getting Current Location Co-ordinates
 
-    async function fetchWeather(){
+    async function getLocationAndDisplay(){
         await window.navigator.geolocation.getCurrentPosition(savePositionToState);  
     }
+//Fetch Weather with API
 
-    async function fetchWeatherGC(url){
+    async function fetchWeather(url){
         let res = await fetch(url);
         const response = await res.json();
         setRes(response.cod);
@@ -40,6 +43,8 @@ const SearchWeatheData = (props) => {
          updateWeather(response, fiveindex);
     }
 
+//Update Weather Data State
+
      function updateWeather(resonse,indexs){
         var array=[]
         var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -54,7 +59,6 @@ const SearchWeatheData = (props) => {
             let iconsym =  text.replace('n', 'd');
             console.log(text);
             console.log(iconsym);
-            //let settime2= settime.slice(16,8);
             let obj = {
                 day:  dayName,
                 temp: resonse.list[indexs[i]].main.temp,
@@ -70,91 +74,29 @@ const SearchWeatheData = (props) => {
             array.push(obj);
         }
         setWeatherData([...array]);
-        console.log(array);
-        console.log(weatherdata);
+
      } 
+
+//Intiate getLocationAndDisplay function when page render intially.
      
-
-    var pos = 1;
-
     useEffect(() => {
-        fetchWeather();
+        getLocationAndDisplay();
     },[]);
+
+//Update City State
 
     const handleCity= (event) =>{
         event.preventDefault();
         setcityname(event.target.value)
     }
+//Calling fetchWeather Function when user entered a city
+
     const getweather= (event) =>{
         event.preventDefault();
         const cityurl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityname}&units=metric&appid=${appkey}`
-        fetchWeatherGC(cityurl);
-    }
-    let weekdaysdata;
-
-
-     weekdaysdata = weatherdata.map((item,i) => {
-        return(
-       <li className="day" key={i}>
-            <span >{item.day}</span>
-           <span className="temp">
-               {item.temp}
-               <sup>o</sup>
-           </span>
-           <span className="weatherIcon">
-           <img className="icon" src={`https://openweathermap.org/img/wn/${item.icon}@2x.png`}></img> 
-           </span>
-           <span>{item.desc}</span>
-       </li> 
-        )
-    })
-    let extradata;
-
-    if(weatherdata.length){
-
-     extradata = <div className="descriptionmain">
-                       <div className="description">
-                          <div className="itemdescrption">
-                             <span className="weatherattribute">Pressure</span>
-                             <span>{weatherdata[0].presure}</span>
-                          </div>
-                          <div className="itemdescrption">
-                            <span className="weatherattribute">humidity</span>
-                            <span>{weatherdata[0].humidity}</span>
-                          </div>
-                      </div>
-                      <div className="description">
-                          <div className="itemdescrption">
-                             <span className="weatherattribute">Sunset</span>
-                             <span>{weatherdata[0].sunset}</span>
-                          </div>
-                          <div className="itemdescrption">
-                            <span className="weatherattribute">Sunrise</span>
-                            <span>{weatherdata[0].sunrise}</span>
-                          </div>
-                      </div>
-                      <div>
-                          {Chart}
-                      </div>
-                    </div>;
-
+        fetchWeather(cityurl);
     }   
-
-    var citydescription;
-
-    if(weatherdata.length){
-
-    if(res === "200"){
-
-        citydescription = <span className="weatherattribute">CityName:{weatherdata[0].city}</span>
-    }else{
-        citydescription = <span className="weatherattribute">Weather data for {cityname} is not available</span>
-    }
-
-    }
-
-    // citydescription = <span className="weatherattribute"> {cityname} CityName: Fremont</span>
-                        
+//Render Main page onto the page
     if(weatherdata){
     return(
         <div className="app-container">
@@ -163,14 +105,12 @@ const SearchWeatheData = (props) => {
                 <button className="searchbutton" onClick={getweather}>Search</button>
             </div>
             <div className="description">
-                <div className="citydesc">
-                   {citydescription}
-                </div>
+                <CityName  weatherdata={weatherdata} res={res} cityname={cityname} />
             </div>
             <div className="weekforecast">  
                 <WeekDaysWeatherDataDisplay weatherdata={weatherdata} />
             <div>
-                <Chart   weatherdata={weatherdata}/>
+                <WeatherGraph   weatherdata={weatherdata}/>
             </div>
                 <ExtraWeatherInfo weatherdata={weatherdata}/>
             </div>
@@ -178,7 +118,4 @@ const SearchWeatheData = (props) => {
     )
     }
 }
-
-
-
 export default SearchWeatheData

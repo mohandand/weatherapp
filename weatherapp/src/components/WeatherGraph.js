@@ -11,7 +11,7 @@ import {
 } from "recharts";
 
 
-const Chart = ({weatherdata}) =>{
+const WeatherGraph = ({weatherdata}) =>{
   let data;
     if(weatherdata.length){
       data = [
@@ -62,4 +62,4 @@ const Chart = ({weatherdata}) =>{
     )
   }
 
-  export default Chart;
+  export default WeatherGraph;
