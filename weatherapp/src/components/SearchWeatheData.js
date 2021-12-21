@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Chart from "./LineChart";
+import WeekDaysWeatherDataDisplay from './WeekDaysWeatherDataDisplay';
+import ExtraWeatherInfo from './ExtraWeatherInfo';
 import axios from "axios";
 
 
@@ -165,14 +167,12 @@ const SearchWeatheData = (props) => {
                    {citydescription}
                 </div>
             </div>
-            <div className="weekforecast">
-                <ul className="alldays">
-                        {weekdaysdata}
-                </ul>
+            <div className="weekforecast">  
+                <WeekDaysWeatherDataDisplay weatherdata={weatherdata} />
             <div>
                 <Chart   weatherdata={weatherdata}/>
             </div>
-                {extradata}
+                <ExtraWeatherInfo weatherdata={weatherdata}/>
             </div>
         </div>
     )
