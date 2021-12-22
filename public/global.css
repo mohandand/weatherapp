@@ -12,7 +12,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0 1rem;
-    max-width: 75%;
+    max-width: 63%;
     margin: auto;
     background-color: #fff;
     border-radius: 20px;
@@ -134,5 +134,8 @@ input.placeholder {
 }
 
 li:hover{
+    color: rgb(0, 47, 255);
+}
+li:first-child{
     color: rgb(0, 47, 255);
 }
