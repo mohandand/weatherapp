@@ -29,7 +29,8 @@ body {
 .sinput{
     height: 20px;
     width: 100%;
-    padding: 11px 50px 11px 55px;
+    /* padding: 11px 50px 11px 55px; */
+    padding: 11px 26px 11px 35px;
     border-radius: 20px;
     margin-right: 5px;
     background-color: #fff;
@@ -75,7 +76,8 @@ body {
     background-color: #fff;
     box-shadow: 4px 4px 9px #ccc, -4px -4px 9px #fff;
     margin: 2px 2px 2px 2px;
-    padding: 20px 40px 20px 40px;
+    /* padding: 20px 40px 20px 40px; */
+    padding: 20px 100px 20px 100px;
     /* padding:0.3rem; */
     border-radius: 10px;
 }
