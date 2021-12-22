@@ -11,7 +11,7 @@ import {
 } from "recharts";
 
 
-const WeatherGraph = ({weatherdata}) =>{
+const WeatherGraph = ({weatherdata,locerror}) =>{
   let data;
     if(weatherdata.length){
       data = [

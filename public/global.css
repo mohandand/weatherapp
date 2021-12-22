@@ -43,6 +43,7 @@ body {
     background-color: #fff;
     border-color: black;
     box-shadow: 4px 4px 9px #ccc, -4px -4px 9px #fff;
+    cursor: pointer;
 
 }
 .weekforecast{
