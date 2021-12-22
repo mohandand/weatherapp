@@ -11,18 +11,29 @@ const SearchWeatheData = (props) => {
     const [cityname,setcityname] = useState("");    
     const [res,setRes] = useState(" ");
     const[weatherdata, setWeatherData] = useState([]);
+    const[locerror ,setlocerror] = useState( );
 
 //Getting Current Location And calling Fetch Wetaherdata function.
     const savePositionToState = (position) => {
         const cityurl = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=${appkey}`
-        console.log(cityurl);
         fetchWeather(cityurl);
+ }
+
+ const error = (err) =>{
+     alert("Please allow access and try again");
+     setlocerror(err.code);
+     
  }
 
 //Getting Current Location Co-ordinates
 
     async function getLocationAndDisplay(){
-        await window.navigator.geolocation.getCurrentPosition(savePositionToState);  
+        await window.navigator.geolocation.getCurrentPosition(savePositionToState ,error);  
+        // try{
+        // await window.navigator.geolocation.getCurrentPosition(savePositionToState ,error);  
+        // }catch (error){
+        //     console.log(error);
+        // }
     }
 //Fetch Weather with API
 
@@ -105,7 +116,7 @@ const SearchWeatheData = (props) => {
                 <button className="searchbutton" onClick={getweather}>Search</button>
             </div>
             <div className="description">
-                <CityName  weatherdata={weatherdata} res={res} cityname={cityname} />
+                <CityName  weatherdata={weatherdata} res={res} cityname={cityname}  locerror= {locerror}/>
             </div>
             <div className="weekforecast">  
                 <WeekDaysWeatherDataDisplay weatherdata={weatherdata} />

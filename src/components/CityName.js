@@ -1,9 +1,13 @@
 import React from 'react';
 
 
-const CityName = ({weatherdata ,res , cityname }) => {
+const CityName = ({weatherdata ,res , cityname ,locerror}) => {
     var citydescription;
     if(weatherdata.length){
+
+    if(locerror=="1"){
+        citydescription = <span className="weatherattribute">Please Allow Access</span>
+    }
 
     if(res === "200"){
 
