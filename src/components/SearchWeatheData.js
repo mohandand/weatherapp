@@ -109,7 +109,7 @@ const SearchWeatheData = (props) => {
             </div>
             <div className="weekforecast">  
                 <WeekDaysWeatherDataDisplay weatherdata={weatherdata} />
-            <div>
+            <div className="Weathergraph">
                 <WeatherGraph   weatherdata={weatherdata}/>
             </div>
                 <ExtraWeatherInfo weatherdata={weatherdata}/>
