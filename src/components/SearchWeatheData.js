@@ -20,8 +20,9 @@ const SearchWeatheData = (props) => {
  }
 
  const error = (err) =>{
-     alert("Please allow access and try again");
+    //  alert("Please allow access and try again");
      setlocerror(err.code);
+     console.log(locerror);
      
  }
 
@@ -111,10 +112,12 @@ const SearchWeatheData = (props) => {
     if(weatherdata){
     return(
         <div className="app-container">
-            <div className="searchinput"> 
+            {/* <div className="searchinput">  */}
+             <form className="searchinput" onSubmit={getweather}>
                 <input type="input" className="sinput"  value={cityname} onChange={handleCity} placeholder="Search For a City"/>
-                <button className="searchbutton" onClick={getweather}>Search</button>
-            </div>
+                <input type="submit" value="Search" className="searchbutton" />
+             </form>
+            {/* </div> */}
             <div className="description">
                 <CityName  weatherdata={weatherdata} res={res} cityname={cityname}  locerror= {locerror}/>
             </div>
