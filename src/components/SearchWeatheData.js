@@ -3,6 +3,7 @@ import WeatherGraph from "./WeatherGraph";
 import WeekDaysWeatherDataDisplay from './WeekDaysWeatherDataDisplay';
 import ExtraWeatherInfo from './ExtraWeatherInfo';
 import CityName from './CityName.js';
+import SearchResults from './SearchResults';
 import axios from "axios";
 
 const SearchWeatheData = (props) => {
@@ -12,6 +13,8 @@ const SearchWeatheData = (props) => {
     const [res,setRes] = useState(" ");
     const[weatherdata, setWeatherData] = useState([]);
     const[locerror ,setlocerror] = useState( );
+    const [search,setSearch] = useState("search")
+    const [desciption,setDescription] = useState("description")
 
 //Getting Current Location And calling Fetch Wetaherdata function.
     const savePositionToState = (position) => {
@@ -30,11 +33,6 @@ const SearchWeatheData = (props) => {
 
     async function getLocationAndDisplay(){
         await window.navigator.geolocation.getCurrentPosition(savePositionToState ,error);  
-        // try{
-        // await window.navigator.geolocation.getCurrentPosition(savePositionToState ,error);  
-        // }catch (error){
-        //     console.log(error);
-        // }
     }
 //Fetch Weather with API
 
@@ -69,8 +67,6 @@ const SearchWeatheData = (props) => {
             let risetime = risetime1.toLocaleTimeString();
             let text= resonse.list[indexs[i]].weather[0].icon;
             let iconsym =  text.replace('n', 'd');
-            console.log(text);
-            console.log(iconsym);
             let obj = {
                 day:  dayName,
                 temp: resonse.list[indexs[i]].main.temp,
@@ -99,6 +95,8 @@ const SearchWeatheData = (props) => {
 
     const handleCity= (event) =>{
         event.preventDefault();
+        setSearch("search");
+        setDescription("description1");
         setcityname(event.target.value)
     }
 //Calling fetchWeather Function when user entered a city
@@ -108,17 +106,33 @@ const SearchWeatheData = (props) => {
         const cityurl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityname}&units=metric&appid=${appkey}`
         fetchWeather(cityurl);
     }   
+
+let data;
+    function modifyState(data ,style){
+    var temp =data;
+    var temp1=style;
+    console.log(temp)
+    console.log(temp1)
+    setSearch(temp1);
+    setcityname(temp);
+    setDescription("description");
+
+    const cityurl = `https://api.openweathermap.org/data/2.5/forecast?q=${temp}&units=metric&appid=${appkey}`
+    fetchWeather(cityurl);
+}
+
 //Render Main page onto the page
     if(weatherdata){
     return(
         <div className="app-container">
-            {/* <div className="searchinput">  */}
              <form className="searchinput" onSubmit={getweather}>
                 <input type="input" className="sinput"  value={cityname} onChange={handleCity} placeholder="Search For a City"/>
                 <input type="submit" value="Search" className="searchbutton" />
              </form>
-            {/* </div> */}
-            <div className="description">
+             <div className={search}>
+                <SearchResults cityname={cityname}  parentCallback={modifyState}/>
+            </div>
+            <div className={desciption}>
                 <CityName  weatherdata={weatherdata} res={res} cityname={cityname}  locerror= {locerror}/>
             </div>
             <div className="weekforecast">  

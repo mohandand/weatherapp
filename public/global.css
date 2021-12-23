@@ -96,6 +96,15 @@ body {
     width: 100%;
     flex-wrap:wrap;
 }
+
+.description1{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+    flex-wrap:wrap;
+    position: absolute;
+}
 .itemdescrption{
     width: 45%;
     border-radius: 0.3rem;
@@ -147,3 +156,29 @@ li:first-child{
     border-radius: 20px;
     box-shadow: 4px 4px 9px #ccc, -4px -4px 9px #fff;
 }
+
+.searchresults{
+    width:80%;
+    padding:5px 40px 5px 25px;
+    margin:5px 1px;
+    background-color: #fff;
+    box-shadow: 4px 4px 9px #ccc, -4px -4px 9px #fff;
+    border-radius: 30px;
+
+
+}
+.search{
+    position:relative;
+    width:100%;
+}
+.searchresults1{
+    font-weight: 700;
+    margin:30px 5px;
+    cursor:pointer;
+}
+
+
+.searchdisable{
+    display:none;
+}
+
