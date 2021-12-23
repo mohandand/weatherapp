@@ -103,7 +103,6 @@ body {
     margin-top: 10px;
     width: 100%;
     flex-wrap:wrap;
-    position: absolute;
 }
 .itemdescrption{
     width: 45%;
@@ -165,7 +164,7 @@ li:first-child{
     box-shadow: 4px 4px 9px #ccc, -4px -4px 9px #fff;
     border-radius: 30px;
 
-
+    position: absolute;
 }
 .search{
     position:relative;
@@ -175,6 +174,10 @@ li:first-child{
     font-weight: 700;
     margin:30px 5px;
     cursor:pointer;
+}
+
+.searchresults1:hover{
+    color: rgb(0, 47, 255);
 }
 
 
