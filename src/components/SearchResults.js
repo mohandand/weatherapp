@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+var data = require('./cities.json');
 
 const SearchResult = ({cityname, parentCallback}) => {
 
@@ -7,10 +8,9 @@ const SearchResult = ({cityname, parentCallback}) => {
 
 if(cityname.length>2)
 {
-    const uscities = ["Fremont","UnionCity","Hayward","Fremonty","UnionCity2","UnionCity3","UnionCity4","UnionCity5","UnionCity6",,"UnionCity7"];
     var example="Fremont";
     let result = [];
-    result = uscities.filter((item)=>{
+    result = data.filter((item)=>{
 
             return (item.toLowerCase()).includes(cityname.toLowerCase());
     })
